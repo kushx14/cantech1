@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 // const port = 5000
 const connectDB = require('./dbconfig');
-
+const cors = require('cors');
+app.use(cors())
 
 connectDB();
 app.use((req,res,next)=>{
@@ -16,6 +17,7 @@ app.use((req,res,next)=>{
 })
 app.use(express.json())
 app.use('/api',require("./Routes/CreateUser"))
+
 app.use('/api',require("./Routes/Displaydata"))
 app.get('/', (req, res) => {
   res.send('Hello World!')
